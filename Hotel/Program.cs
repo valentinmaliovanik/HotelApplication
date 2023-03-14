@@ -30,10 +30,10 @@ namespace Hotel
                     case 1:
                         hotel.NumberOffRooms();
                         break;
-                        case 2:
+                    case 2:
                         hotel.RoomFree();
                         break;
-                        case 3:
+                    case 3:
                         hotel.RoomNotFree();
                         break;
                     case 4:
@@ -44,6 +44,9 @@ namespace Hotel
                         break;
                     case 6:
                         hotel.ToCancelReservation();
+                        break;
+                        default:
+                        Console.WriteLine("Вы ввели некоректные даные");
                         break;
                 }
 

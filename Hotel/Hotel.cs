@@ -8,8 +8,8 @@ namespace Hotel
 {
     internal class Hotel
     {
-        List<Room> rooms = new List<Room>();
-        DateTime currentDate = DateTime.Now;
+       public List<Room> rooms = new List<Room>();
+       private DateTime currentDate = DateTime.Now;
          
         public Hotel()
         {
@@ -48,7 +48,7 @@ namespace Hotel
 
             foreach (var room in rooms)
             {
-                if (room.Reservation == true)
+                if (room.Reservation )
                 {
                     Console.WriteLine("Свободные номера: " + room.NumberRoom);
                 }
@@ -59,7 +59,7 @@ namespace Hotel
         {
             foreach (var room in rooms)
             {
-                if (room.Reservation == false)
+                if (!room.Reservation )
                 {
                     Console.WriteLine("Зарезервированый номер: " + room.NumberRoom);
                     Console.WriteLine("Номер зарезервирован на имя: " + room.Client.FistName+ " " + room.Client.SecondName );
@@ -70,17 +70,27 @@ namespace Hotel
 
         public void ReservationForRoom()
         {
-            int numberRoom = 0;
-            int numberTelephone = 0;
+            int numberRoom ;
+            int numberTelephone ;
             string fistName;
             string secondName;
             
             Console.WriteLine("Какой номер вы хотите забронировать ?");
-            numberRoom = int.Parse(Console.ReadLine());
+            bool resault = int.TryParse(Console.ReadLine(), out numberRoom);
+            if (!resault)
+            {
+                Console.WriteLine("Вы ввели некоректные даные");
+                return;
+            }
 
             Console.WriteLine("Введите номер телефона клиента :");
-            numberTelephone = int.Parse(Console.ReadLine());
-            
+            bool resault2 = int.TryParse(Console.ReadLine(), out numberTelephone);
+            if (!resault2)
+            {
+                Console.WriteLine("Вы ввели некоректные даные");
+                return;
+            }
+
             Console.WriteLine("Введите имя клиента");
             fistName = Console.ReadLine();
 
@@ -89,23 +99,59 @@ namespace Hotel
 
             Console.WriteLine("На какую дату вы хотите забронировать номер :  ");
             Console.WriteLine("Введите год:");
-            int Year = int.Parse(Console.ReadLine());
-           
+            int Year;
+            bool resault3 = int.TryParse(Console.ReadLine(), out Year);
+            if (!resault3)
+            {
+                Console.WriteLine("Вы ввели некоректные даные");
+                return;
+            }
+
             Console.WriteLine("Введите месяц:");
-            int Month = int.Parse(Console.ReadLine());
-           
+            int Month;
+            bool resault4 = int.TryParse(Console.ReadLine(), out Month);
+            if (!resault4)
+            {
+                Console.WriteLine("Вы ввели некоректные даные");
+                return;
+            }
+
             Console.WriteLine("Введите день:");
-            int Day = int.Parse(Console.ReadLine());
+            int Day;
+            bool resault5 = int.TryParse(Console.ReadLine(), out Day);
+            if (!resault5)
+            {
+                Console.WriteLine("Вы ввели некоректные даные");
+                return;
+            }
 
             Console.WriteLine("До кокого числа вы хотите забронировать номер? :");
             Console.WriteLine("Введите год:");
-            int Year1 = int.Parse(Console.ReadLine());
+            int Year1;
+            bool resault6 = int.TryParse(Console.ReadLine(), out Year1);
+            if (!resault6)
+            {
+                Console.WriteLine("Вы ввели некоректные даные");
+                return;
+            }
 
             Console.WriteLine("Введите месяц:");
-            int Month1 = int.Parse(Console.ReadLine());
+            int Month1;
+            bool resault7 = int.TryParse(Console.ReadLine(), out Month1);
+            if (!resault7)
+            {
+                Console.WriteLine("Вы ввели некоректные даные");
+                return;
+            }
 
             Console.WriteLine("Введите день:");
-            int Day1 = int.Parse(Console.ReadLine()); 
+            int Day1;
+            bool resault8 = int.TryParse(Console.ReadLine(), out Day1);
+            if (!resault8)
+            {
+                Console.WriteLine("Вы ввели некоректные даные");
+                return;
+            }
 
 
             foreach (var room in rooms)
@@ -184,12 +230,15 @@ namespace Hotel
            
             DateTime dateTime = new DateTime(Year, Month, Day);
             Console.WriteLine("Свободніе нномера на эту дату : ");
-            foreach(var date in rooms)
+
+            foreach (var date in rooms)
+            {
+
                 if (date.FinalDate <= dateTime)
                 {
                     Console.WriteLine(date.NumberRoom);
                 }
-
+            }
         }
 
         public void ToCancelReservation()
