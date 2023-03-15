@@ -25,19 +25,7 @@ namespace Hotel
             Console.WriteLine("В гостинице :" + rooms.Count + " номеров.");
             foreach(var room in rooms)
             {
-                if(room.IdRoom == 1)
-                {
-                    Console.WriteLine("Oднокомнатные: "+ room.NumberRoom);
-                }
-                
-                if (room.IdRoom == 2)
-                {
-                    Console.WriteLine("Двухкомнатные: " + room.NumberRoom);
-                }                
-                if (room.IdRoom == 3)
-                {
-                    Console.WriteLine("Трехкомнатные: " + room.NumberRoom);
-                }
+                Console.WriteLine("Количество мест :"+ room.IdRoom+ "  Номер комнаты :"+room.NumberRoom);
             }
 
         }
