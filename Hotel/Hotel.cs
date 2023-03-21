@@ -10,7 +10,7 @@ namespace Hotel
     {
        public List<Room> rooms = new List<Room>();
        private DateTime currentDate = DateTime.Now;
-         
+       
         public Hotel()
         {
             AddRoom();
@@ -22,10 +22,10 @@ namespace Hotel
         }
         public void NumberOffRooms()
         {
-            Console.WriteLine("В гостинице :" + rooms.Count + " номеров.");
+            Console.WriteLine("В гостинице : " + rooms.Count + " номеров.");
             foreach(var room in rooms)
             {
-                Console.WriteLine("Количество мест :"+ room.IdRoom+ "  Номер комнаты :"+room.NumberRoom);
+                room.InRoom();
             }
 
         }
@@ -36,10 +36,7 @@ namespace Hotel
 
             foreach (var room in rooms)
             {
-                if (room.Reservation )
-                {
-                    Console.WriteLine("Свободные номера: " + room.NumberRoom);
-                }
+               room.RoomNotReservation();
             }
         }
 
@@ -47,12 +44,7 @@ namespace Hotel
         {
             foreach (var room in rooms)
             {
-                if (!room.Reservation )
-                {
-                    Console.WriteLine("Зарезервированый номер: " + room.NumberRoom);
-                    Console.WriteLine("Номер зарезервирован на имя: " + room.Client.FistName+ " " + room.Client.SecondName );
-                    Console.WriteLine("Номер забронирован с :"+room.StartDate+" по "+ room.FinalDate );
-                }
+                room.RoomReservation();
             }
         }
 
@@ -157,21 +149,21 @@ namespace Hotel
 
         public void AddRoom()
         {
-            Room room1 = new Room(1, 1,true);
-            Room room2 = new Room(2, 1, true);
-            Room room3 = new Room(3, 1, true);
-            Room room4 = new Room(4, 1, true);
-            Room room5 = new Room(5, 1, true);
-            Room room6 = new Room(6, 2 , true);
-            Room room7 = new Room(7, 2, true);
-            Room room8 = new Room(8, 2, true);
-            Room room9 = new Room(9, 2, true);
-            Room room10 = new Room(10, 2, true);
-            Room room11 = new Room(11, 3, true);
-            Room room12 = new Room(12, 3, true);
-            Room room13 = new Room(13, 3, true);
-            Room room14 = new Room(14, 3, true);
-            Room room15 = new Room(15, 3, true);
+            Room room1 = new Room(1, 1);
+            Room room2 = new Room(2, 1 );
+            Room room3 = new Room(3, 1);
+            Room room4 = new Room(4, 1);
+            Room room5 = new Room(5, 1);
+            Room room6 = new Room(6, 2);
+            Room room7 = new Room(7, 2);
+            Room room8 = new Room(8, 2);
+            Room room9 = new Room(9, 2);
+            Room room10 = new Room(10, 2);
+            Room room11 = new Room(11, 3);
+            Room room12 = new Room(12, 3);
+            Room room13 = new Room(13, 3);
+            Room room14 = new Room(14, 3);
+            Room room15 = new Room(15, 3);
 
             rooms.Add(room1);
             rooms.Add(room2);
