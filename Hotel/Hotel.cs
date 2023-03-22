@@ -33,155 +33,75 @@ namespace Hotel
         public void RoomFree()
         {
             UnloadingNumbers();
-
+            
             foreach (var room in rooms)
             {
-               room.RoomNotReservation();
+                room.RoomNotReservation();
             }
         }
 
         public void RoomNotFree()
         {
+            bool resault = false;
             foreach (var room in rooms)
             {
                 room.RoomReservation();
-            }
+                if (room.Reservation == false)
+                {
+                    resault = true;
+                }
+            }       
+                
+                if (resault == false)
+                {
+                    Console.WriteLine("В отеле нет забронированых номеров!!!");
+                }
+
+            
         }
 
         public void ReservationForRoom()
         {
-            int numberRoom ;
-            int numberTelephone ;
-            string fistName;
-            string secondName;
-            
-            Console.WriteLine("Какой номер вы хотите забронировать ?");
-            bool resault = int.TryParse(Console.ReadLine(), out numberRoom);
-            if (!resault)
+            Console.WriteLine("Введите номер комнаты : ");
+            int number = int.Parse(Console.ReadLine()); 
+            foreach(var room in rooms)
             {
-                Console.WriteLine("Вы ввели некоректные даные");
-                return;
-            }
-
-            Console.WriteLine("Введите номер телефона клиента :");
-            bool resault2 = int.TryParse(Console.ReadLine(), out numberTelephone);
-            if (!resault2)
-            {
-                Console.WriteLine("Вы ввели некоректные даные");
-                return;
-            }
-
-            Console.WriteLine("Введите имя клиента");
-            fistName = Console.ReadLine();
-
-            Console.WriteLine("Введите фамилию клиента");
-            secondName = Console.ReadLine();
-
-            Console.WriteLine("На какую дату вы хотите забронировать номер :  ");
-            Console.WriteLine("Введите год:");
-            int Year;
-            bool resault3 = int.TryParse(Console.ReadLine(), out Year);
-            if (!resault3)
-            {
-                Console.WriteLine("Вы ввели некоректные даные");
-                return;
-            }
-
-            Console.WriteLine("Введите месяц:");
-            int Month;
-            bool resault4 = int.TryParse(Console.ReadLine(), out Month);
-            if (!resault4)
-            {
-                Console.WriteLine("Вы ввели некоректные даные");
-                return;
-            }
-
-            Console.WriteLine("Введите день:");
-            int Day;
-            bool resault5 = int.TryParse(Console.ReadLine(), out Day);
-            if (!resault5)
-            {
-                Console.WriteLine("Вы ввели некоректные даные");
-                return;
-            }
-
-            Console.WriteLine("До кокого числа вы хотите забронировать номер? :");
-            Console.WriteLine("Введите год:");
-            int Year1;
-            bool resault6 = int.TryParse(Console.ReadLine(), out Year1);
-            if (!resault6)
-            {
-                Console.WriteLine("Вы ввели некоректные даные");
-                return;
-            }
-
-            Console.WriteLine("Введите месяц:");
-            int Month1;
-            bool resault7 = int.TryParse(Console.ReadLine(), out Month1);
-            if (!resault7)
-            {
-                Console.WriteLine("Вы ввели некоректные даные");
-                return;
-            }
-
-            Console.WriteLine("Введите день:");
-            int Day1;
-            bool resault8 = int.TryParse(Console.ReadLine(), out Day1);
-            if (!resault8)
-            {
-                Console.WriteLine("Вы ввели некоректные даные");
-                return;
-            }
-
-
-            foreach (var room in rooms)
-            {
-                if(room.NumberRoom == numberRoom)
+                if(room.NumberRoom == number)
                 {
-                    room.Reservation = false;
-                    room.Client = new Client(numberTelephone,fistName,secondName);
-                    room.StartDate = new DateTime(Year, Month, Day);
-                    room.FinalDate = new DateTime(Year1, Month1, Day1);
-                }
-            }
+                    if (!room.Reservation )
+                    {
+                        Console.WriteLine("Этот номер уже забронирован !!!");
+                        return;
+                    }
+                    else
+                    {
+                        room.Reserve();
+                    }
 
+                     
+                }
+
+            }
+          
         }
 
         public void AddRoom()
         {
-            Room room1 = new Room(1, 1);
-            Room room2 = new Room(2, 1 );
-            Room room3 = new Room(3, 1);
-            Room room4 = new Room(4, 1);
-            Room room5 = new Room(5, 1);
-            Room room6 = new Room(6, 2);
-            Room room7 = new Room(7, 2);
-            Room room8 = new Room(8, 2);
-            Room room9 = new Room(9, 2);
-            Room room10 = new Room(10, 2);
-            Room room11 = new Room(11, 3);
-            Room room12 = new Room(12, 3);
-            Room room13 = new Room(13, 3);
-            Room room14 = new Room(14, 3);
-            Room room15 = new Room(15, 3);
+           
+            int b = 1;
+            for (int i = 1; i <=15; i++)
+            {
+                if (i > 5)
+                {
+                    b=2;                    
+                }
+                if (i >= 10)
+                {
+                    b =3;
+                }
 
-            rooms.Add(room1);
-            rooms.Add(room2);
-            rooms.Add(room3);
-            rooms.Add(room4);
-            rooms.Add(room5);
-            rooms.Add(room6);
-            rooms.Add(room7);
-            rooms.Add(room8);
-            rooms.Add(room9);
-            rooms.Add(room10);
-            rooms.Add(room11);
-            rooms.Add(room12);
-            rooms.Add(room13);
-            rooms.Add(room14);
-            rooms.Add(room15);
-            
-            
+                rooms.Add(new Room(i, b));
+            }                   
         }
 
         public void UnloadingNumbers()
