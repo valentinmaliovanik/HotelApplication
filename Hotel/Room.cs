@@ -9,18 +9,16 @@ namespace Hotel
     internal class Room
     {
         public int IdRoom { get; set; }
-
         public int NumberRoom { get; set; }
-
         public bool Reservation { get; set; }
         public DateTime StartDate = DateTime.Now;
         public DateTime FinalDate = DateTime.Now;
         public Client Client { get; set; }
-        public Room(int number, int idRoom )
+        public Room(int _number, int _idRoom )
         {
-            IdRoom = idRoom;
-            NumberRoom = number;
-            Reservation = true; 
+            IdRoom = _idRoom;
+            NumberRoom = _number;
+            Reservation = false; 
         }
         
         public void InRoom()
@@ -30,7 +28,7 @@ namespace Hotel
 
         public void RoomNotReservation() 
         { 
-            if(Reservation ) 
+            if(!Reservation ) 
             {
                 Console.WriteLine("Свободные номера: " + NumberRoom);
             }
@@ -38,7 +36,7 @@ namespace Hotel
 
         public void RoomReservation()
         {
-            if (!Reservation)
+            if (Reservation)
             {
                 Console.WriteLine("Зарезервированый номер: " + NumberRoom);
                 Console.WriteLine("Номер зарезервирован на имя: " + Client.FistName + " " + Client.SecondName);
@@ -70,8 +68,6 @@ namespace Hotel
             Client  = new Client(telephoneNumb, nameClient, secondNameClient);
             StartDate  = new DateTime (year, month, day);
             FinalDate  = new DateTime (year2, month1, day2);
-
-
         }
 
         public int ParseInt(string message)
@@ -91,6 +87,4 @@ namespace Hotel
             }
         }
     }
-
-
 }

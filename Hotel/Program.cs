@@ -24,8 +24,8 @@ namespace Hotel
                 Console.WriteLine(" Свободные номера на определенную дату 5 ");
                 Console.WriteLine(" Снять бронь 6 ");
 
-                int a = int.Parse(Console.ReadLine());
-                switch (a)
+                int action = int.Parse(Console.ReadLine());
+                switch (action)
                 {
                     case 1:
                         hotel.NumberOffRooms();
@@ -45,6 +45,7 @@ namespace Hotel
                     case 6:
                         hotel.ToCancelReservation();
                         break;
+
                         default:
                         Console.WriteLine("Вы ввели некоректные даные");
                         break;

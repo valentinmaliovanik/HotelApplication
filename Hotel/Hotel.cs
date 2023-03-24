@@ -8,9 +8,9 @@ namespace Hotel
 {
     internal class Hotel
     {
-       public List<Room> rooms = new List<Room>();
-       private DateTime currentDate = DateTime.Now;
-       
+        public List<Room> rooms = new List<Room>();
+        private DateTime currentDate = DateTime.Now;
+
         public Hotel()
         {
             AddRoom();
@@ -23,17 +23,16 @@ namespace Hotel
         public void NumberOffRooms()
         {
             Console.WriteLine("В гостинице : " + rooms.Count + " номеров.");
-            foreach(var room in rooms)
+            foreach (var room in rooms)
             {
                 room.InRoom();
             }
-
         }
 
         public void RoomFree()
         {
             UnloadingNumbers();
-            
+
             foreach (var room in rooms)
             {
                 room.RoomNotReservation();
@@ -46,29 +45,27 @@ namespace Hotel
             foreach (var room in rooms)
             {
                 room.RoomReservation();
-                if (room.Reservation == false)
+                if (room.Reservation == true)
                 {
                     resault = true;
                 }
-            }       
-                
-                if (resault == false)
-                {
-                    Console.WriteLine("В отеле нет забронированых номеров!!!");
-                }
+            }
 
-            
+            if (resault == false)
+            {
+                Console.WriteLine("В отеле нет забронированых номеров!!!");
+            }
         }
 
         public void ReservationForRoom()
         {
             Console.WriteLine("Введите номер комнаты : ");
-            int number = int.Parse(Console.ReadLine()); 
-            foreach(var room in rooms)
+            int number = int.Parse(Console.ReadLine());
+            foreach (var room in rooms)
             {
-                if(room.NumberRoom == number)
+                if (room.NumberRoom == number)
                 {
-                    if (!room.Reservation )
+                    if (!room.Reservation)
                     {
                         Console.WriteLine("Этот номер уже забронирован !!!");
                         return;
@@ -77,38 +74,33 @@ namespace Hotel
                     {
                         room.Reserve();
                     }
-
-                     
                 }
-
             }
-          
         }
 
         public void AddRoom()
         {
-           
             int b = 1;
-            for (int i = 1; i <=15; i++)
+            for (int i = 1; i <= 15; i++)
             {
                 if (i > 5)
                 {
-                    b=2;                    
+                    b = 2;
                 }
                 if (i >= 10)
                 {
-                    b =3;
+                    b = 3;
                 }
 
                 rooms.Add(new Room(i, b));
-            }                   
+            }
         }
 
         public void UnloadingNumbers()
         {
-            foreach(var Date in rooms)
+            foreach (var Date in rooms)
             {
-                if(Date.FinalDate<= currentDate)
+                if (Date.FinalDate <= currentDate)
                 {
                     Date.Reservation = true;
                 }
@@ -118,22 +110,21 @@ namespace Hotel
         public void FreeRoomsToDate()
         {
             Console.WriteLine("На каккую дату вы хотите забронировать номер ?");
-           
+
             Console.WriteLine("Введите год");
             int Year = int.Parse(Console.ReadLine());
-            
+
             Console.WriteLine("Введите месяц");
             int Month = int.Parse(Console.ReadLine());
-           
+
             Console.WriteLine("Введите день");
             int Day = int.Parse(Console.ReadLine());
-           
+
             DateTime dateTime = new DateTime(Year, Month, Day);
             Console.WriteLine("Свободніе нномера на эту дату : ");
 
             foreach (var date in rooms)
             {
-
                 if (date.FinalDate <= dateTime)
                 {
                     Console.WriteLine(date.NumberRoom);
@@ -145,7 +136,7 @@ namespace Hotel
         {
             Console.WriteLine("Какой номер вы хотите разбронировать ? ");
             int NumberRoom = int.Parse(Console.ReadLine());
-            foreach(var number in rooms)
+            foreach (var number in rooms)
             {
                 if (number.NumberRoom == NumberRoom)
                 {
@@ -155,6 +146,4 @@ namespace Hotel
             Console.WriteLine("Бронь снята))");
         }
     }
-    
-    
 }
