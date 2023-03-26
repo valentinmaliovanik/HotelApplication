@@ -13,12 +13,12 @@ namespace Hotel
         public string FistName { get; set; }
 
         public string SecondName { get; set; }
-        public Client(int telephoneNumber, string firstName,string secondNsme)
-        {
-                TelephoneNumber= telephoneNumber;
-                FistName= firstName;
-                SecondName= secondNsme;
 
+        public Client(int _telephoneNumber, string _firstName,string _secondNsme)
+        {
+                TelephoneNumber = _telephoneNumber;
+                FistName = _firstName;
+                SecondName = _secondNsme;
         }
     }
 }
